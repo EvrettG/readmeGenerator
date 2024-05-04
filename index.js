@@ -6,6 +6,7 @@ const colors = require('colors');
 const generateMarkdown = require("./utils/generateMarkdown");
 // Imports the file system from node js to allow for reading and writing to files
 const fs = require('fs');
+const { default: Choices } = require('inquirer/lib/objects/choices');
 // Filename path to be changed later, possibly replace with "${input path here!}/README" to allow for cutom file path to save readme
 const fileName = "./utils/README.md"
 
@@ -28,7 +29,14 @@ const questions = [
             // console.log(colors.green("sucess 2 electric boogaloo"));
             return title.trim();
         }
-      }//, if more questions added
+    },
+    // license section, move later
+    {
+        type: 'list',
+        message: colors.blue('Please Select a license, select the top for no license'),
+        name: "license",
+        choices: ["", "MIT", "Apache-2.0", "GPL-3.0", "BSD-3-Clause"],
+    }
 ];
 
 // TODO: Create a function to write README file
