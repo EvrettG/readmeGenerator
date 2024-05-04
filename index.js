@@ -7,7 +7,7 @@ const generateMarkdown = require("./utils/generateMarkdown");
 // Imports the file system from node js to allow for reading and writing to files
 const fs = require('fs');
 // Filename path to be changed later, possibly replace with "${input path here!}/README" to allow for cutom file path to save readme
-const fileName = "./utils/README"
+const fileName = "./utils/README.md"
 
 // TODO: Create an array of questions for user input
 const questions = [
@@ -18,7 +18,7 @@ const questions = [
         validate:  (title) => {
             if (!title){
                 // console.log(colors.red(`You must include a title`));
-                return false;
+                return "You must enter a title";
             } else {
                 // console.log(colors.green("sucess"));
                 return true;
@@ -32,13 +32,18 @@ const questions = [
 ];
 
 // TODO: Create a function to write README file
-function writeToFile(fileName, data) {}
+function writeToFile(data) {
+    fs.writeFile(fileName, data, (err) =>
+  err ? console.error(err) : console.log('Success!')
+);
+}
 
 // TODO: Create a function to initialize app
 // this one has to pull any and all other functions that we want to run
 function init() {
-    inquirer.prompt(questions).then((answers) =>
-console.log(`Your answer is ${answers.title}`))
+    inquirer.prompt(questions).then((data) =>
+    writeToFile(generateMarkdown(data))
+    )
 }
 
 // Function call to initialize app
