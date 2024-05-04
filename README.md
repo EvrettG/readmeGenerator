@@ -21,6 +21,9 @@ If you have a suggestion that would make this better, please fork the repo and c
 
 ## Future updates / improvements
 
+- Add creative commons as an option
+- Change badge color to what is displayed on badges page
+
 ## Credits
 
 ## License
