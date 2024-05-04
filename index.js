@@ -11,11 +11,13 @@ const { default: Choices } = require('inquirer/lib/objects/choices');
 const fileName = "./utils/README.md"
 
 // TODO: Create an array of questions for user input
+// this is an array of questions for inquire to process
 const questions = [
     {
         type: 'input',
         message: colors.blue('What is the title of your project?'),
         name: 'title',
+        // used to ensure input is valid
         validate:  (title) => {
             if (!title){
                 // console.log(colors.red(`You must include a title`));
@@ -30,7 +32,77 @@ const questions = [
             return title.trim();
         }
     },
-    // license section, move later
+    {
+        type: 'input',
+        message: colors.blue('Please write a description of you project or leave blank and add after the readme is generated'),
+        name: 'description'
+    },
+    {
+        type: 'input',
+        message: colors.blue('Please write instalation instructions for your project or leave blank and add after the readme is generated'),
+        name: 'instalation'
+    },
+    {
+        type: 'input',
+        message: colors.blue('Please write how to use this project or leave blank and add after the readme is generated'),
+        name: 'usage'
+    },
+    {
+        type: 'input',
+        message: colors.blue('Please write how to contribute to this project or leave blank and basic contributing test will be inserted'),
+        name: 'contributing'
+    },
+    {
+        type: 'input',
+        // check on what tests acctully mean
+        message: colors.blue('Please write how to tests this project or leave blank and add after the readme is generated'),
+        name: 'tests'
+    },
+    {
+        type: 'input',
+        message: colors.blue('Please write what technologies this project used or leave blank and this section will be removed'),
+        name: 'technologies'
+    },
+    {
+        type: 'input',
+        message: colors.blue('Please write what updates you are planing for this project or leave blank and this section will be removed'),
+        name: 'updates'
+    },
+    {
+        type: 'input',
+        message: colors.blue('What your username on git hub?'),
+        name: 'gitname',
+        validate:  (gitname) => {
+            if (!gitname){
+                return "You must enter a git hub username";
+            } else {
+                return true;
+            }    
+        },
+        filter: (gitname) => {
+            return gitname.trim();
+        }
+    },
+    {
+        type: 'input',
+        message: colors.blue('What your e-mail adress?'),
+        name: 'eMail',
+        validate:  (eMail) => {
+            if (!eMail){
+                return "You must enter an e-mail adress";
+            } else {
+                return true;
+            }    
+        },
+        filter: (eMail) => {
+            return eMail.trim();
+        }
+    },
+    {
+        type: 'input',
+        message: colors.blue('Please write anyone or thing you would like to credit for this project or leave blank and this section will be removed'),
+        name: 'credits'
+    },
     {
         type: 'list',
         message: colors.blue('Please Select a license, select the top for no license'),
