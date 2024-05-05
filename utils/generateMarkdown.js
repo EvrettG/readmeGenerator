@@ -6,7 +6,7 @@ function renderLicenseBadge(license) {
   if (!license) {
     return "";
   } else {
-    return `[![License: GPL v3](https://img.shields.io/badge/License-${license}-blue.svg)]`
+    return `![License: GPL v3](https://img.shields.io/badge/License-${license.replace(/-/g, "_")}-blue.svg)`
   }
 }
 
@@ -27,27 +27,52 @@ function renderLicenseSection(license) {
   if (!license) {
     return "";
   } else {
-    return `## License
-    This project is licensed under the [${license}]${renderLicenseLink(license)} ${renderLicenseBadge(license)}${renderLicenseLink(license)}`
+    return `## License\n
+This project is licensed under the [${license}]${renderLicenseLink(license)} [${renderLicenseBadge(license)}]${renderLicenseLink(license)}`
   }
 }
 // TODO: Add function to render tech or nothing if unused
+function techRender(technologies){
+  console.log(technologies)
+  if(!technologies){
+    return "";
+  } else {
+    return`## Technologies used
+${backToTop}
+${technologies}`
+  }
+}
 
+function contributeRender(contributing){
+  if(!contributing){
+    return`Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are greatly appreciated.
+
+  If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
+    
+  - Fork the Project
+  - Create your Feature Branch (git checkout -b feature/AmazingFeature)
+  - Commit your Changes (git commit -m 'Add some AmazingFeature')
+  - Push to the Branch (git push origin feature/AmazingFeature)
+  - Open a Pull Request`
+  } else {
+    return `${contributing}`
+  } 
+}
 
 // TODO: Create a function to generate markdown for README
 function generateMarkdown(data) {
-  console.log(data.technologies)
-
+  const {contributing, technologies, updates, credits} = data
+  console.log(technologies)
   let license = data.license;
-  let techText = "- [Technologies Used and/or Depedencies](#technologies-used-and/or-depedencies)"
-  let updateText = ""
-  let creditText = ""
-  let licenseText = ""
+  let techText =  "";
+  let updateText = "";
+  let creditText = "";
+  let licenseText = "";
   if (license !== ""){
     licenseText = "- [License](#license)"
   }
-  if(data.technologies == ""){
-    techText = - ""
+  if(technologies !== ""){
+    techText = "- [Technologies Used and/or Depedencies](#technologies-used-and/or-depedencies)"
   }
 
   return `# ${data.title}
@@ -83,7 +108,7 @@ function generateMarkdown(data) {
 
   ## Contributing
   ${backToTop}
-  ${data.contributing}
+  ${contributeRender(contributing)}
 
 
   ## Tests
@@ -91,9 +116,7 @@ function generateMarkdown(data) {
   ${data.tests}
 
 
-  ## Technologies used
-  ${backToTop}
-  ${data.technologies}
+  ${techRender(technologies)}
 
 
   ## Future updates
@@ -103,7 +126,8 @@ function generateMarkdown(data) {
 
   ## Questions
   ${backToTop}
-  Please direct any and all questions to ${data.gitname} at ${data.eMail}
+
+  Please direct any and all questions to [${data.gitname}](https://github.com/${data.gitname}) or email at  [${data.eMail}](${data.eMail})
 
 
   ## Credits

@@ -114,13 +114,16 @@ const questions = [
 // TODO: Create a function to write README file
 function writeToFile(data) {
     fs.writeFile(fileName, data, (err) =>
-  err ? console.error(err) : console.log('Success!')
+  err ? console.error(err) : console.log('README.md successfully made!')
 );
 }
 
 // TODO: Create a function to initialize app
 // this one has to pull any and all other functions that we want to run
 function init() {
+    console.log(colors.bgGreen("Please Follow the prompts to create a README.md for your project."));
+    // TODO: Add function that checks if README.md already exists and cancels program with request to move file
+    console.log(colors.bgGreen("Ensure that no README.md is in the utils folder or it will be overwritten"))
     inquirer.prompt(questions).then((data) =>
     writeToFile(generateMarkdown(data))
     )
