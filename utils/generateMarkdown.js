@@ -1,6 +1,6 @@
 // Used for any section that has a return to top feature
 const backToTop =   '<div style="text-align: right;"><sup><a href="#table-of-contents">Table of contents</a></sup> </div>'
-// TODO: Create a function that returns a license badge based on which license is passed in
+// Function that returns a license badge based on which license is passed in
 // If there is no license, return an empty string
 function renderLicenseBadge(license) {
   if (!license) {
@@ -9,8 +9,7 @@ function renderLicenseBadge(license) {
     return `![License: GPL v3](https://img.shields.io/badge/License-${license.replace(/-/g, "_")}-blue.svg)`
   }
 }
-
-// TODO: Create a function that returns the license link
+// Function that returns the license link
 // If there is no license, return an empty string
 function renderLicenseLink(license) {
   if (!license) {
@@ -20,7 +19,7 @@ function renderLicenseLink(license) {
   }
 }
 
-// TODO: Create a function that returns the license section of README
+// Function that returns the license section of README
 // If there is no license, return an empty string
 function renderLicenseSection(license) {
   console.log(license)
@@ -31,9 +30,8 @@ function renderLicenseSection(license) {
 This project is licensed under the [${license}]${renderLicenseLink(license)} [${renderLicenseBadge(license)}]${renderLicenseLink(license)}`
   }
 }
-// TODO: Add function to render tech or nothing if unused
+// Function to render technologies used or removes section if blank
 function techRender(technologies){
-  console.log(technologies)
   if(!technologies){
     return "";
   } else {
@@ -42,7 +40,7 @@ ${backToTop}
 ${technologies}`
   }
 }
-
+// Placeholder text for a blank entry on contributing
 function contributeRender(contributing){
   if(!contributing){
     return`Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are greatly appreciated.
@@ -58,21 +56,47 @@ function contributeRender(contributing){
     return `${contributing}`
   } 
 }
+// Function to render if any updates are planed or removes section if blank
+function updateRender(updates){
+  if(!updates){
+    return "";
+  } else {
+    return`## Future updates
+${backToTop}
+${updates}`
+  }
+}
+// Function to render if there are any credit's to be given or removes section if blank
+function creditRender(credits){
+  if(!credits){
+    return "";
+  } else {
+    return`## Credits
+${backToTop}
+${credits}`
+  }
+}
 
 // TODO: Create a function to generate markdown for README
 function generateMarkdown(data) {
-  const {contributing, technologies, updates, credits} = data
-  console.log(technologies)
-  let license = data.license;
+  // The following atributes are for optional sections of the README.md that may not be used or for any that have placeholder text for a blank entry 
+  const {contributing, technologies, updates, credits, license} = data
   let techText =  "";
   let updateText = "";
   let creditText = "";
   let licenseText = "";
-  if (license !== ""){
-    licenseText = "- [License](#license)"
-  }
+  // If statements that remove unused section from table of contents
   if(technologies !== ""){
     techText = "- [Technologies Used and/or Depedencies](#technologies-used-and/or-depedencies)"
+  }
+  if(updates !== ""){
+    updateText = "- [Future updates](#future-updates)"
+  }
+  if(credits !== ""){
+    creditText = "- [Credits](#credits)"
+  }   
+  if (license !== ""){
+    licenseText = "- [License](#license)"
   }
 
   return `# ${data.title}
@@ -86,10 +110,11 @@ function generateMarkdown(data) {
   - [Contributing](#contributing)
   - [Tests](#tests)
   ${techText}
-  - [Future updates](#future-updates)
+  ${updateText}
   - [Questions](#questions)
-  - [Credits](#credits)
+  ${creditText}
   ${licenseText}
+
 
   ## Description
   ${backToTop}
@@ -119,9 +144,7 @@ function generateMarkdown(data) {
   ${techRender(technologies)}
 
 
-  ## Future updates
-  ${backToTop}
-  ${data.updates}
+  ${updateRender(updates)}
 
 
   ## Questions
@@ -130,13 +153,10 @@ function generateMarkdown(data) {
   Please direct any and all questions to [${data.gitname}](https://github.com/${data.gitname}) or email at  [${data.eMail}](${data.eMail})
 
 
-  ## Credits
-  ${backToTop}
-  ${data.credits}
+  ${creditRender(credits)}
 
 
- ${renderLicenseSection(license)}
-`;
+  ${renderLicenseSection(license)}`;
 }
 
 module.exports = generateMarkdown;
