@@ -8,6 +8,16 @@ const fs = require('fs');
 const { default: Choices } = require('inquirer/lib/objects/choices');
 // TODO: Filename path to be changed later, possibly replace with "${input path here!}/README" to allow for cutom file path to save readme
 const fileName = "./utils/README.md"
+// Checks if README.md already exists
+function fileExists(fileName) {
+    try {
+      fs.accessSync(fileName, fs.constants.F_OK);
+      return true;
+    } catch (err) {
+      return false;
+    }
+  }
+
 
 
 // this is an array of questions for inquire to process
@@ -118,6 +128,9 @@ function writeToFile(data) {
 // Function that initialize's the app
 // this one has to pull any and all other functions that we want to run
 function init() {
+    if (fileExists(fileName)) {
+        console.log(colors.magenta('README.MD Already exists. Please move README.md in the utils folder or it will be overwritten'));
+      } 
     // Instructions for using the program
     console.log("Please Follow the prompts to create a README.md 1st draft for your project.");
     console.log(`Note: Any questions in ${colors.brightRed("red")} are mandatory and may not be skipped`);
