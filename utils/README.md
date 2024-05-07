@@ -2,8 +2,6 @@
   
   ![License: GPL v3](https://img.shields.io/badge/License-BSD_3_Clause-blue.svg)
 
-  - [Link to video on google drive](https://drive.google.com/file/d/1ERERaOBSEkiTgWH-nqZISpJ6JCoZFuPU/view)
-
   ## Table of contents
   - [Description](#description)
   - [Instalation instructions](#instalation-instructions)
@@ -26,17 +24,17 @@
   <div style="text-align: right;"><sup><a href="#table-of-contents">Table of contents</a></sup> </div>
 
   Copy the files from github to your local machine in the comand line of the ReadmeGenerator folder, then using node.js run
-  npm i
+  
   
   ## Usage
   <div style="text-align: right;"><sup><a href="#table-of-contents">Table of contents</a></sup> </div>
 
   Navigate on the command line to the ReadmeGenerator folder, then run
-  node index
-  and then follow the prompts to generate a new README.md in the utils folder
+  
 
   ## Contributing
   <div style="text-align: right;"><sup><a href="#table-of-contents">Table of contents</a></sup> </div>
+
   Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are greatly appreciated.
 
   If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
@@ -50,6 +48,7 @@
 
   ## Tests
   <div style="text-align: right;"><sup><a href="#table-of-contents">Table of contents</a></sup> </div>
+
   Tests Should inlude Title, Username, and e-mail are generated. Also that License is valid and not displaying 404
 
 
@@ -65,8 +64,7 @@
 <div style="text-align: right;"><sup><a href="#table-of-contents">Table of contents</a></sup> </div>
 
 Node.js
-npm colors
-npm inquirer: 8.2.4
+
 
   ## Questions
   <div style="text-align: right;"><sup><a href="#table-of-contents">Table of contents</a></sup> </div>
